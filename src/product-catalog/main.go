@@ -231,6 +231,7 @@ func mustMapEnv(target *string, key string) {
 	*target = value
 }
 
+
 func (p *productCatalog) Check(ctx context.Context, req *healthpb.HealthCheckRequest) (*healthpb.HealthCheckResponse, error) {
 	return &healthpb.HealthCheckResponse{Status: healthpb.HealthCheckResponse_SERVING}, nil
 }
@@ -285,6 +286,7 @@ func (p *productCatalog) GetProduct(ctx context.Context, req *pb.GetProductReque
 	return found, nil
 }
 
+
 func (p *productCatalog) SearchProducts(ctx context.Context, req *pb.SearchProductsRequest) (*pb.SearchProductsResponse, error) {
 	span := trace.SpanFromContext(ctx)
 
@@ -319,8 +321,5 @@ func createClient(ctx context.Context, svcAddr string) (*grpc.ClientConn, error)
 		grpc.WithStatsHandler(otelgrpc.NewClientHandler()),
 	)
 }
-
-
-
 
 
